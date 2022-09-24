@@ -1,0 +1,60 @@
+{% extends 'quest/base.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+	
+	h2, h3{
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	a, a:hover, a:visited, a:active{
+		text-decoration: none;
+		font-size: 16px;
+		color: #13171c;
+	}
+
+	.profile{
+		padding: 75px 0 75px 0;
+	}
+
+	table, td{
+		font-family: 'Montserrat', sans-serif;
+		font-size: 16px;
+	}
+
+</style>
+<div class="profile">
+<div class="container">
+  <h2>Profile</h2>              
+  <br><br>                                                 
+  <div class="table-responsive">          
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Username</td>
+        <td>{{ user.username }}</td>
+      </tr>
+       <tr>
+        <td>First Name</td>
+        <td>{{ user.first_name }}</td>
+      </tr>
+       <tr>
+        <td>Last Name</td>
+        <td>{{ user.last_name }}</td>
+      </tr>
+       <tr>
+        <td>Email</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td><a href="{% url 'change_password' %}">Change Password</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="{% url 'edit' %}">Edit Details</a>
+  </div>
+</div>
+</div>
+{% endblock %}

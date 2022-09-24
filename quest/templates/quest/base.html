@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cyquest</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+</head>
+<style type="text/css">
+	
+.header{
+	padding: 42px 0 42px 0;
+	background: #13171c;
+}
+.header-title{
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 42px;
+}
+.info{
+	padding: 100px 0 175px 0;
+	margin-bottom: 100px;
+}
+.info p, a, a:hover, a:active, a:focus{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	text-decoration: none!important;
+}
+
+.links-holder{
+	padding-top: 8px;
+}
+
+li a{
+	text-decoration: none!important;
+	color: #fff!important;
+	font-size: 18px!important;
+}
+
+li a:hover, li a:visited, li a:active{
+	background: transparent!important;
+	font-size: 18px!important;
+}
+
+.footer{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	font-size: 20px;
+	font-family: 'Montserrat', sans-serif;
+	color: #fff;
+	background: #13171c;
+}
+
+.author, .author:hover, .author:visited, .author:active{
+	color: #fff!important;
+	text-decoration: none!important;
+}
+
+</style>
+<body>
+<div class="header">
+	<div class="container">
+		<div class="row">
+			<a href="{% url 'home' %}"><div class="col-md-4 header-title">Cyquest</div></a>
+			<div class="col-md-6 col-md-offset-2 links-holder">
+				<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'quiz' %}">Play</a></li>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'faq' %}">FAQ</a></li>
+						<li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+					{% else %}
+						<li><a href="{% url 'login' %}">Login</a></li>
+						<li><a href="{% url 'faq' %}">FAQ</a></li>
+						<li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
+					{% endif %}
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+{% if request.path != '/profile/' %}
+	<div class="info">
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+{% else %}
+	{% block main %}
+	{% endblock %}
+{% endif %}
+<br>
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8 text-center">Made with &#9825; by <a href="https://www.instagram.com/iei_bpdc/" class="author">IEI</a></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
