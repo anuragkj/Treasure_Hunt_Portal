@@ -1,13 +1,11 @@
 from django.db import models
 from django.utils import timezone
-from markdownfield.models import MarkdownField, RenderedMarkdownField
-from markdownfield.validators import VALIDATOR_STANDARD
 
 # Create your models here.
 class Question(models.Model):
 	qlevel = models.PositiveIntegerField(default=1)
 	question = models.TextField()
-	detail = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
+	detail = models.TextField()
 	answer = models.CharField(max_length=32, default=None)
 	points = models.PositiveIntegerField(default=1)
 

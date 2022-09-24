@@ -1,11 +1,13 @@
 {% extends 'quest/base.html' %}
 {% load crispy_forms_tags %}
+{% load markdown_extras %}
 {% block content %}
 	<div class="content-section">
 		<form method="POST">
 			{% csrf_token %}
+			<h3>{{ ask.question }}</h3>
 			<fieldset class="form-group">
-				<legend class="bottom-border mb4">{{ ask.question }}</legend>
+				<legend class="bottom-border mb4">{{ ask.detail | markdown | safe }}</legend>
 				{{ form|crispy }}
 			</fieldset>
 			<div class="form-group">
