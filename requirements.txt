@@ -1,4 +1,4 @@
 django
 django-crispy-forms
 markdown==3.2.1
-django-markdownfield
+crispy-bootstrap4

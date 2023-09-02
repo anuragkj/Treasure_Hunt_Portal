@@ -20,7 +20,7 @@ from quest import views as quest_view
 from quiz import views as quiz_view
 
 urlpatterns = [
-	path('admin/', admin.site.urls),
+  	path('admin/', admin.site.urls),
 	path('register/', quest_view.register, name='register'),
 	path('faq/', quiz_view.faq, name='faq'),
 	path('profile/edit/', quest_view.edit, name='edit'),
