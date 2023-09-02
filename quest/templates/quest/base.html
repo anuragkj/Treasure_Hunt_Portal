@@ -45,38 +45,21 @@ li a:hover, li a:visited, li a:active{
 	font-size: 18px!important;
 }
 
-.footer{
-	padding-top: 50px;
-	padding-bottom: 50px;
-	font-size: 20px;
-	font-family: 'Montserrat', sans-serif;
-	color: #fff;
-	background: #4285F4;
-}
-
-.author, .author:hover, .author:visited, .author:active{
-	color: #fff!important;
-	text-decoration: none!important;
-}
-
-.sticky-footer {
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f5f5f5; /* Set your desired background color */
-    padding: 10px 0; /* Adjust the padding as needed */
+    padding: 20px 0; /* Adjust the padding as needed */
+    background: #4285F4;
     text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
 }
 
-/* Style the author link */
-.author {
-    text-decoration: none;
-    color: #333; /* Set your desired text color */
-}
-
-/* Style the link on hover */
-.author:hover {
-    color: #007bff; /* Set your desired hover color */
+.author, .author:hover, .author:visited, .author:active {
+    color: #fff!important;
+    text-decoration: none!important;
 }
 
 </style>
@@ -93,7 +76,7 @@ li a:hover, li a:visited, li a:active{
 							<li><a href="{% url 'quiz' %}">Play</a></li>
 							<li><a href="{% url 'profile' %}">Profile</a></li>
 							<li><a href="{% url 'faq' %}">FAQ</a></li>
-							<!--<li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>-->
+							<li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
 							<li><a href="{% url 'logout' %}">Logout</a></li>
 						{% else %}
 							<li><a href="{% url 'login' %}">Login</a></li>
@@ -120,11 +103,11 @@ li a:hover, li a:visited, li a:active{
 {% endif %}
 <br>
 <div class="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8 text-center"><a href="https://www.instagram.com/gdscbpdc/" class="author">Made with &#9825; by GDSC</a></div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 text-center"><a href="https://www.instagram.com/gdscbpdc/" class="author">Made with &#9825; by GDSC</a></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
