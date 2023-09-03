@@ -19,17 +19,18 @@ class Answer(models.Model):
 	answer = models.CharField(max_length=32)
 
 class stud(models.Model):
-	name = models.CharField(max_length=32)
-	username = models.CharField(max_length=32)
-	points = models.PositiveIntegerField(default=0)
-	lql = models.PositiveIntegerField(default=1)
-	time = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=32)
+    username = models.CharField(max_length=32)
+    points = models.PositiveIntegerField(default=0)
+    lql = models.PositiveIntegerField(default=1)
+    time_diff = models.CharField(max_length=32, null = True)
+    time_joined = models.DateTimeField(default=timezone.now)
 
-	def __str__(self):
-		return self.username
+    def __str__(self):
+        return self.username
 
-	def lqlpoints(self, score):
-		self.points = self.points + score
-		self.lql = self.lql + 1
-		self.time = timezone.now()
-		self.save()
+    def lqlpoints(self, score):
+        self.points = self.points + score
+        self.lql = self.lql + 1
+        self.time_diff = str(timezone.now() - self.time_joined)
+        self.save()

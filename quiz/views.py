@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Question, Answer, stud
 from .forms import QuestionForm, PlayForm
+from django.db.models import F, ExpressionWrapper, fields
+
 # Create your views here.
 @login_required
 @permission_required('quest.change_quest', raise_exception=True)
@@ -43,14 +45,19 @@ def quiz(request):
 	else:
 		form = PlayForm()
 	req = request.user.username
-	try:
-		temp_stud = stud.objects.get(username=req)
-	except stud.DoesNotExist:
-		temp_stud = False
-	if not temp_stud:
+	# try:
+	# 	temp_stud = stud.objects.get(username=req)
+	# except stud.DoesNotExist:
+	# 	temp_stud = False
+	# if not temp_stud:
+	# 	temp_user = User.objects.get(username=req)
+	# 	stud.objects.create(name=temp_user.first_name, username=req)
+	# temp_stud = stud.objects.get(username=req)
+	temp_stud, created = stud.objects.get_or_create(username=req)
+	if created:
 		temp_user = User.objects.get(username=req)
-		stud.objects.create(name=temp_user.first_name, username=req)
-	temp_stud = stud.objects.get(username=req)
+		temp_stud.name = temp_user.first_name
+		temp_stud.save()
 	try:
 		lvl = temp_stud.lql
 		ask = Question.objects.get(qlevel=lvl)
@@ -58,6 +65,13 @@ def quiz(request):
 	except:
 		return render(request, 'quiz/result.html', {'points': temp_stud.points})
 
+from django.db.models import F, ExpressionWrapper, fields
+
+from django.db.models import F, ExpressionWrapper, fields
+
+from django.db.models import F, ExpressionWrapper, fields
+
 def leaderboard(request):
-	stud_list = stud.objects.all().order_by('-points', 'time')
+	stud_list = stud.objects.exclude(points=0).order_by('-points', 'time_diff')
 	return render(request, 'quiz/leaderboard.html', {'list': stud_list})
+

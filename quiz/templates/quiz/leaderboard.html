@@ -9,7 +9,7 @@
 						<th>Lead Name</th>
 						<th>Team Name</th>
 						<th>Clues Cleared</th>
-						<th>Last Solved</th>
+						<th>Time Taken</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -18,13 +18,13 @@
 							<td>{{ i.name }}</td>
 							<td>{{ i.username }}</td>
 							<td>{{ i.points }}</td>
-							<td>{{ i.time }}</td>
+							<td>{{ i.time_diff }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		{% else %}
-		<h2>It's Pretty Blank here</h2>
+		<h2>No players have solved any questions yet</h2>
 		{% endif %}
 	</div>
 {% endblock %}
