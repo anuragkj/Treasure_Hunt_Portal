@@ -45,31 +45,23 @@ def quiz(request):
 	else:
 		form = PlayForm()
 	req = request.user.username
-	# try:
-	# 	temp_stud = stud.objects.get(username=req)
-	# except stud.DoesNotExist:
-	# 	temp_stud = False
-	# if not temp_stud:
-	# 	temp_user = User.objects.get(username=req)
-	# 	stud.objects.create(name=temp_user.first_name, username=req)
-	# temp_stud = stud.objects.get(username=req)
-	temp_stud, created = stud.objects.get_or_create(username=req)
-	if created:
+	try:
+		temp_stud = stud.objects.get(username=req)
+	except stud.DoesNotExist:
+		temp_stud = False
+	if not temp_stud:
 		temp_user = User.objects.get(username=req)
-		temp_stud.name = temp_user.first_name
-		temp_stud.save()
+		stud.objects.create(name=temp_user.first_name, username=req)
+	temp_stud = stud.objects.get(username=req)
 	try:
 		lvl = temp_stud.lql
 		ask = Question.objects.get(qlevel=lvl)
+		print(lvl)
+		print(ask)
 		return render(request, 'quiz/question.html', {'form': form, 'ask': ask})
-	except:
+	except Exception as e:
+		print(e)
 		return render(request, 'quiz/result.html', {'points': temp_stud.points})
-
-from django.db.models import F, ExpressionWrapper, fields
-
-from django.db.models import F, ExpressionWrapper, fields
-
-from django.db.models import F, ExpressionWrapper, fields
 
 def leaderboard(request):
 	stud_list = stud.objects.exclude(points=0).order_by('-points', 'time_diff')
